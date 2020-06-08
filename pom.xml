@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.lol.json</groupId>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <groupId>com.github.zongzhang</groupId>
     <artifactId>lol-json</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>lol-json</name>
+    <description>lol json library</description>
+    <url>https://github.com/zongzhang/lol-json</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -17,27 +24,33 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/zongzhang/lol-json/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/zongzhang/lol-json</url>
+        <connection>https://github.com/zongzhang/lol-json.git</connection>
+        <developerConnection>https://github.com/zongzhang</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>iteblog</name>
+            <email>wyphao.2007@163.com</email>
+            <url>https://www.iteblog.com</url>
+        </developer>
+    </developers>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.68</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.6</version>
         </dependency>
     </dependencies>
 
@@ -82,5 +95,22 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <!--                <dependencies>-->
+                <!--                    <dependency>-->
+                <!--                        <groupId>org.apache.maven.scm</groupId>-->
+                <!--                        <artifactId>maven-scm-provider-gitexe</artifactId>-->
+                <!--                        <version>1.9.5</version>-->
+                <!--                    </dependency>-->
+                <!--                </dependencies>-->
+                <!--                <configuration>-->
+                <!--                    <autoVersionSubmodules>true</autoVersionSubmodules>-->
+                <!--                </configuration>-->
+            </plugin>
+        </plugins>
     </build>
 </project>

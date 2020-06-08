@@ -1,4 +1,4 @@
-package org.lol.json.exc;
+package com.github.zongzhang.lol.json.exc;
 
 /**
  * @since 1.0

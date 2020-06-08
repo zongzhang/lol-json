@@ -1,6 +1,6 @@
-package org.lol.json;
+package com.github.zongzhang.lol.json;
 
-import org.lol.json.exc.JsnException;
+import com.github.zongzhang.lol.json.exc.JsnException;
 
 import java.util.HashMap;
 import java.util.Map;

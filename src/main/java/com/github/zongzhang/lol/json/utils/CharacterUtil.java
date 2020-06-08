@@ -1,4 +1,4 @@
-package org.lol.json.utils;
+package com.github.zongzhang.lol.json.utils;
 
 /**
  * @since 1.0

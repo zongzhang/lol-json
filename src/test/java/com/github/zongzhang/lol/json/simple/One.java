@@ -1,4 +1,4 @@
-package org.lol.json.simple;
+package com.github.zongzhang.lol.json.simple;
 
 import java.io.Serializable;
 

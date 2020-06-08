@@ -1,4 +1,4 @@
-package org.lol.json;
+package com.github.zongzhang.lol.json;
 
 import org.junit.Test;
 
