@@ -3,6 +3,9 @@
 一个简单的json解析器  
 
 ### 下载
+
+[![Build Status](https://www.travis-ci.org/zongzhang/lol-json.svg?branch=master)](https://www.travis-ci.org/zongzhang/lol-json)
+
 ```xml
 <dependency>
     <groupId>com.github.zongzhang</groupId>
