@@ -67,6 +67,16 @@ public class Tokenizer {
             case '"':
                 return readString();
             case '-':
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
                 return readNumber();
         }
         throw new JsnException("Illegal character");
@@ -100,6 +110,46 @@ public class Tokenizer {
     }
 
     private Element readNumber() {
-        return null;
+        int start = pos;
+        if (chars[pos] == CharacterUtil._0) {
+            pos++;
+        } else {
+            pos++;
+            while (pos < len && CharacterUtil.isDigit(chars[pos])) {
+                pos++;
+            }
+        }
+        if (pos < len && chars[pos] == CharacterUtil.dot) {
+            pos++;
+            if (pos < len && CharacterUtil.isDigit(chars[pos])) {
+                pos++;
+                while (pos < len && CharacterUtil.isDigit(chars[pos])) {
+                    pos++;
+                }
+            } else {
+                throw new JsnException("unexpected end of number");
+            }
+        }
+        int end = pos;
+        if (pos < len && (chars[pos] == CharacterUtil.E || chars[pos] == CharacterUtil.e)) {
+            pos++;
+            if (pos < len && chars[pos] == CharacterUtil.plus || chars[pos] == CharacterUtil.minus) {
+                pos++;
+            }
+            if (pos < len && CharacterUtil.isDigit(chars[pos])) {
+                pos++;
+                while (pos < len && CharacterUtil.isDigit(chars[pos])) {
+                    pos++;
+                }
+                end = pos;
+            } else {
+                throw new JsnException("unexpected end of number");
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = start; i < end; i++) {
+            sb.append(chars[i]);
+        }
+        return new Element(Token.numericType, sb.toString());
     }
 }
