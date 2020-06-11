@@ -25,4 +25,12 @@ public class TokenizerTest {
         List<Element> list = tokenizer.tokenize();
         System.out.println(list);
     }
+
+    @Test
+    public void testTokenizeBoolean() {
+        String json = "{\"a\":false,\"b\":true}";
+        Tokenizer tokenizer = new Tokenizer(json);
+        List<Element> list = tokenizer.tokenize();
+        System.out.println(list);
+    }
 }
