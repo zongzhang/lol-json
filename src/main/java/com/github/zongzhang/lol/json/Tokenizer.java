@@ -28,6 +28,7 @@ public class Tokenizer {
             element = mark();
             tokens.add(element);
         }
+        tokens.add(new Element(Token.EOF, null));
         return tokens;
     }
 
