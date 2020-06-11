@@ -28,6 +28,10 @@ public class CharsCode {
     public static final int _8 = 0x0038;
     public static final int _9 = 0x0039;
 
+    public static final int n = 0x006E;
+    public static final int t = 0x0074;
+    public static final int f = 0x0066;
+
     public static final int e = 0x0065;
     public static final int E = 0x0045;
 

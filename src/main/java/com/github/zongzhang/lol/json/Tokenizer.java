@@ -44,25 +44,30 @@ public class Tokenizer {
     private Element mark() {
         skipWhitespace();
         char ch = chars[pos];
-        pos++;
         switch (ch) {
             case '{':
+                pos++;
                 return new Element(Token.startObject, null);
             case '}':
+                pos++;
                 return new Element(Token.endObject, null);
             case '[':
+                pos++;
                 return new Element(Token.startArray, null);
             case ']':
+                pos++;
                 return new Element(Token.endArray, null);
             case ',':
+                pos++;
                 return new Element(Token.comma, null);
             case ':':
+                pos++;
                 return new Element(Token.colon, null);
-            case 'n':
+            case CharsCode.n:
                 return readNull();
-            case 't':
+            case CharsCode.t:
                 return readTrue();
-            case 'f':
+            case CharsCode.f:
                 return readFalse();
             case CharsCode.doubleQuotes:
                 return readString();
@@ -88,16 +93,17 @@ public class Tokenizer {
     }
 
     private Element readTrue() {
-        pos = pos + 3;
+        pos = pos + 4;
         return new Element(Token.trueWord, true);
     }
 
     private Element readFalse() {
-        pos = pos + 4;
+        pos = pos + 5;
         return new Element(Token.falseWord, false);
     }
 
     private Element readString() {
+        pos++;
         int start = pos;
         int end = pos;
         while (pos < len) {
