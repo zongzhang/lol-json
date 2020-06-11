@@ -10,7 +10,7 @@
 <dependency>
     <groupId>com.github.zongzhang</groupId>
     <artifactId>lol-json</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 

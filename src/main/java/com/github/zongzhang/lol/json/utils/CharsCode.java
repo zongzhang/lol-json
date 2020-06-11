@@ -3,7 +3,7 @@ package com.github.zongzhang.lol.json.utils;
 /**
  * @since 1.0
  */
-public class CharacterUtil {
+public class CharsCode {
     public static final int space = 0x0020; //半角空格
     public static final int space_1 = 0x3000; //全角空格
     public static final int space_2 = 0x00A0; //不间断空
@@ -28,6 +28,8 @@ public class CharacterUtil {
 
     public static final int plus = 0x002b;
     public static final int minus = 0x002d;
+
+    public static final int doubleQuotes = 0x0022;
 
 
     public static boolean isDigit(int ch) {

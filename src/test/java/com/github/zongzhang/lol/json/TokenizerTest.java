@@ -19,8 +19,8 @@ public class TokenizerTest {
 
 
     @Test
-    public void testTokenizeNumber() {
-        String json = "{\"a\": 12}";
+    public void testTokenizeNumeric() {
+        String json = "{\"a\":-12}";
         Tokenizer tokenizer = new Tokenizer(json);
         List<Element> list = tokenizer.tokenize();
         System.out.println(list);
