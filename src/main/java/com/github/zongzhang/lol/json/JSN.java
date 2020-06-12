@@ -4,66 +4,75 @@ package com.github.zongzhang.lol.json;
 import com.github.zongzhang.lol.json.exc.JsnException;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @since 1.0
  */
 public class JSN {
-    List<Element> elements = new ArrayList<>();
+    ArrayList<Element> elements = new ArrayList<>();
+    ElementList iterator;
 
     public Object of(String text) {
         Tokenizer tokenizer = new Tokenizer(text);
-        elements = tokenizer.tokenize();
-        return parseObject();
+        elements = (ArrayList<Element>) tokenizer.tokenize();
+        iterator = new ElementList(elements);
+        Token startToken = elements.get(0).getToken();
+        switch (startToken) {
+            case startObject:
+                return parseObject();
+            case startArray:
+                return parseArray();
+            default:
+                throw new JsnException("parse error, invalid json.");
+        }
     }
 
     private Object parseObject() {
         JsnObject jsonObject = new JsnObject();
-
-        Token startToken = elements.get(0).getToken();
-        if (startToken != Token.startObject) {
-            throw new JsnException("Parse error, invalid Json.");
-        }
-
-        String key = null;
-        Object value;
-        for (int i = 1; i < elements.size(); i++) {
-            Token token = elements.get(i).getToken();
-            Object tokenValue = elements.get(i).getValue();
-            int next = i + 1;
-            Token nextToken = null;
-            if (next < elements.size()) {
-                nextToken = elements.get(next).getToken();
-            }
+        while (iterator.hasNext()) {
+            Element element = iterator.next();
+            Token token = element.getToken();
             switch (token) {
-                case stringType: {
-                    if (nextToken == Token.colon) {
-                        key = (String) tokenValue;
+                case startObject:
+                    Element nextElement = iterator.next();
+                    String key = (String) nextElement.getValue();
+                    Object value = parseObject();
+                    jsonObject.put(key, value);
+                    break;
+                case stringType:
+                    Element stringNext = iterator.next();
+                    Token stringNextToken = stringNext.getToken();
+                    if (stringNextToken == Token.colon) {
+                        String key1 = (String) element.getValue();
+                        Object o1 = parseObject();
+                        jsonObject.put(key1, o1);
+                        break;
                     } else {
-                        value = tokenValue;
-                        jsonObject.put(key, value);
+                        return element.getValue();
                     }
-                    break;
-                }
                 case colon:
-                case comma:
+                    //冒号
                     break;
+                case comma:
+                    //逗号
+                    break;
+                case trueWord:
+                    return true;
+                case falseWord:
+                    return false;
+                case nullWord:
+                    return null;
+                case EOF:
                 case endObject:
                     return jsonObject;
-
-                case trueWord: {
-                    jsonObject.put(key, true);
-                    break;
-                }
-                case falseWord: {
-                    jsonObject.put(key, false);
-                    break;
-                }
                 default:
                     throw new JsnException("Unexpected Json.");
             }
         }
         return jsonObject;
+    }
+
+    private Object parseArray() {
+        return null;
     }
 }

@@ -9,7 +9,7 @@ public class AppTest {
 
     @Test
     public void testParser() {
-        String json = "{\"name\": \"Ashley\", \"type\": false}";
+        String json = "{\"jianzhi\": \"zifu\", \"buer\": false}";
         JSN jsn = new JSN();
         Object o = jsn.of(json);
         System.out.println(o);
