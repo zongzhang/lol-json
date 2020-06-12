@@ -4,7 +4,7 @@
 
 ### 下载
 
-[![Build Status](https://www.travis-ci.org/zongzhang/lol-json.svg?branch=master)](https://www.travis-ci.org/zongzhang/lol-json)
+![Java CI with Maven](https://github.com/zongzhang/lol-json/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
 
 ```xml
 <dependency>
