@@ -9,12 +9,11 @@ import java.util.ArrayList;
  * @since 1.0
  */
 public class JSN {
-    ArrayList<Element> elements = new ArrayList<>();
-    ElementList iterator;
+    private ElementList iterator;
 
     public Object of(String text) {
         Tokenizer tokenizer = new Tokenizer(text);
-        elements = (ArrayList<Element>) tokenizer.tokenize();
+        ArrayList<Element> elements = (ArrayList<Element>) tokenizer.tokenize();
         iterator = new ElementList(elements);
         Token startToken = elements.get(0).getToken();
         switch (startToken) {
@@ -73,6 +72,19 @@ public class JSN {
     }
 
     private Object parseArray() {
-        return null;
+        JsnArray jsnArray = new JsnArray();
+        while (iterator.hasNext()) {
+            Element element = iterator.next();
+            Token token = element.getToken();
+            switch (token) {
+                case startArray:
+                case comma:
+                    //逗号
+                    break;
+                default:
+                    throw new JsnException("Unexpected Json.");
+            }
+        }
+        return jsnArray;
     }
 }
