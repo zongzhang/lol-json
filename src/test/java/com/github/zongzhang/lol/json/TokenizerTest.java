@@ -33,4 +33,12 @@ public class TokenizerTest {
         List<Element> list = tokenizer.tokenize();
         System.out.println(list);
     }
+
+    @Test
+    public void testTokenizeArray() {
+        String json = "[\"a\",\"b\"]";
+        Tokenizer tokenizer = new Tokenizer(json);
+        List<Element> list = tokenizer.tokenize();
+        System.out.println(list);
+    }
 }

@@ -14,4 +14,12 @@ public class AppTest {
         Object o = jsn.of(json);
         System.out.println(o);
     }
+
+    @Test
+    public void testArrayParser() {
+        String json = "[\"jianzhi\", \"buer\"]";
+        JSN jsn = new JSN();
+        Object o = jsn.of(json);
+        System.out.println(o);
+    }
 }

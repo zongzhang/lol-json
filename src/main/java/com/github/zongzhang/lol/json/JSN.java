@@ -73,17 +73,29 @@ public class JSN {
 
     private Object parseArray() {
         JsnArray jsnArray = new JsnArray();
+        boolean filter = true;
+
+        Element element = iterator.next();
+        Token token = element.getToken();
+        if (token == Token.startArray) {
+            filter = false;
+        } else {
+            jsnArray.add(element.getValue());
+        }
         while (iterator.hasNext()) {
-            Element element = iterator.next();
-            Token token = element.getToken();
-            switch (token) {
-                case startArray:
-                case comma:
-                    //逗号
-                    break;
-                default:
-                    throw new JsnException("Unexpected Json.");
+            if (filter) {
+                filter = false;
+                continue;
             }
+            Element et = iterator.next();
+            Token tn = et.getToken();
+            if (tn == Token.comma) {
+                continue;
+            }
+            if (tn == Token.endArray) {
+                break;
+            }
+            jsnArray.add(et.getValue());
         }
         return jsnArray;
     }
