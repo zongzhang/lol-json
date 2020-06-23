@@ -8,10 +8,8 @@ public enum Token {
     endObject(2),
     startArray(3),
     endArray(4),
-    //逗号
-    comma(5),
-    //冒号
-    colon(6),
+    comma(5),//逗号
+    colon(6),//冒号
     nullWord(7),
     trueWord(8),
     falseWord(9),
